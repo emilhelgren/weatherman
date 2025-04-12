@@ -1,7 +1,14 @@
 
 ## Setup
-- activate the venv
+- activate a venv
+- pip install -r requirements.txt
+- Make sure you have access to DMI EDR forecast API, and Opencage API, as well as an AWS S3 bucket, and then set the following environment variables:
+* FORECAST_EDR_API_KEY
+* OPENCAGE_API_KEY
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
 - If you want to use cache, launch a redis client using: docker run -p 6379:6379 -it redis/redis-stack:latest
+- run: fastapi dev
 - Example of a valid request: 
 GET: http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&datestr=2025-04-10&tilt=35&orientation=east
 ////
@@ -30,10 +37,10 @@ Add PV panel parameters such as:
 * orientation ✅
 * scale by Wp ✅
 * Time of year mask ✅
-* Fix the bugs 😅 values don't seem right
 
 ### Step 4x (expansion)
-Use the old DTU project to account for specific location shadows using height data
+Use the old DTU project to account for specific location shadows using height data.
+Tune the conversion factor to be something accurate.
 
 ### Step 5
 Setup a storage bucket on AWS to save plots and data in ✅ 
