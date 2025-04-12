@@ -2,7 +2,10 @@
 ## Setup
 - activate the venv
 - launch a redis client using: docker run -p 6379:6379 -it redis/redis-stack:latest
- 
+- Example of a valid request: 
+GET: http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&datestr=2025-04-10&tilt=35&orientation=east
+////
+curl --location 'http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&datestr=2025-04-10&tilt=35&orientation=east'
 
 
 ## Concept
