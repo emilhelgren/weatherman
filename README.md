@@ -1,7 +1,8 @@
+This project uses UV [source:https://docs.astral.sh/uv/] as the package manager.
+
 
 ## Setup
-- activate a venv
-- pip install -r requirements.txt
+- run: uv sync
 - Make sure you have access to DMI EDR forecast API, and Opencage API, as well as an AWS S3 bucket, and then set the following environment variables:
 * FORECAST_EDR_API_KEY
 * OPENCAGE_API_KEY
@@ -10,11 +11,7 @@
 - If you want to use cache, launch a redis client using: docker run -p 6379:6379 -it redis/redis-stack:latest
 - run: fastapi dev
 - Example of a valid request: 
-GET: http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&datestr=2025-04-10&tilt=35&orientation=east
-////
-curl --location 'http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&datestr=2025-04-10&tilt=35&orientation=east'
-
-
+GET: http://localhost:8000/forecast/address?address=Brorsonsgade%201%2C%201624%20K%C3%B8benhavn%20V&tilt=35&orientation=east&datestr=YYYY-MM-DD
 ## Concept
 
 ### Step 1
@@ -49,9 +46,12 @@ Create some simple plots and save them in the bucket along with the data ✅
 Return the URL of the bucket in the response ✅ 
 
 ### Step 6
-Set up a CRON job on Azure that fetches data every day to basically gather historical forecast data
+Make some good error handling for invalid requests.
 
 ### Step 7
+Set up a CRON job on Azure that fetches data every day to basically gather historical forecast data
+
+### Step 8
 Fetch production data somewhere as well, so I can setup some data mining on the forecasting features
 
 ## Useful parameters:

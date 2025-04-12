@@ -9,11 +9,8 @@ async def getGlobalRadiationFlux(lat, lon, date):
     API_KEY = os.getenv("FORECAST_EDR_API_KEY")
     datestr = get_formatted_date(date)
     url = f"https://dmigw.govcloud.dk/v1/forecastedr/collections/harmonie_dini_sf/position?parameter-name=global-radiation-flux&datetime={datestr}&crs=crs84&f=GeoJSON&api-key={API_KEY}&coords=POINT({lat} {lon})"
-    print("Requesting DMI data from", url)
     response = requests.get(url)
     responseJson = response.json()
-    print("DMI response:")
-    print(responseJson)
     data = []
     rawdata = []
     last_value = responseJson["features"][0]["properties"]["global-radiation-flux"]
@@ -35,8 +32,6 @@ async def getDirectSolarExposure(lat, lon, date):
     url = f"https://dmigw.govcloud.dk/v1/forecastedr/collections/harmonie_dini_sf/position?parameter-name=direct-solar-exposure&datetime={datestr}&crs=crs84&f=GeoJSON&api-key={API_KEY}&coords=POINT({lat} {lon})"
     response = requests.get(url)
     responseJson = response.json()
-    print("DMI response:")
-    print(responseJson)
     data = []
     rawdata = []
     last_value = responseJson["features"][0]["properties"]["direct-solar-exposure"]

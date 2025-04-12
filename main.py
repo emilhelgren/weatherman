@@ -50,9 +50,6 @@ async def get_forecast(address: str, datestr: str="2025-03-13", tilt: float=35, 
         orientation_angle = 180 if orientation == "south" else 90 if orientation == "east" else 270 if orientation == "west" else 0
         # Convert rawData to np array and multiply by conversion and kwp
         production_forecast = estimate_pv_output(np.array(rawData), date, lat, lon, tilt, orientation_angle) * kwp
-        print(production_forecast)
-        print(type(production_forecast))
-        print_column_graph(list(production_forecast))
         file_path, title = hourly_pv_plot(production_forecast, "PV Production Forecast", "Production (Wh)", "Hour", "pv_production_forecast")
         # Upload pdf file to S3
         with open(file_path, "rb") as f:
@@ -79,7 +76,6 @@ async def get_forecast(address: str, datestr: str="2025-03-13", tilt: float=35, 
 @app.get("/coords")
 async def get_coords(address: str):
     try:
-        print("address", address)
         cached_item = cache.get(address)
         if cached_item:
             return {"address": address, "coords": eval(cached_item), "cached": True}

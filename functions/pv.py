@@ -38,7 +38,7 @@ def estimate_pv_output(
     # 2. Generate hourly timestamps
     times = pd.date_range(
         start=pd.Timestamp(date).replace(hour=0, minute=0, second=0),
-        periods=24, freq='H', tz='UTC'
+        periods=24, freq='h', tz='UTC'
     )
     location = Location(latitude, longitude)
     times_local = times.tz_convert(location.tz)
